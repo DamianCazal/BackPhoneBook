@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf back-end/dist && cd front-end && npm run build && cp -r dist back-end",
+    "build:ui": "rm -rf back-end/dist && cd front-end && npm run build && cp -r dist ../back-end",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
   "repository": {
