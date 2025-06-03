@@ -7,6 +7,7 @@ morgan('tiny')
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static('dist'))
 
 //Datos
 const data = [
@@ -45,7 +46,7 @@ app.use(requestLogger)
 
 
 app.get('/', (req, res) => {
-  res.send('Servidor funcionandoc con Render')
+  res.send('Servidor funcionando con Render')
 })
 
 app.get('/api/persons', (req, res) => {
