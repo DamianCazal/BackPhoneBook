@@ -68,6 +68,12 @@ app.post('/api/persons', (req, res) => {
   newPerson.save().then( savedPerson => res.json(savedPerson))
 })
 
+app.put('/api/persons/:id', (req, res) => {
+  // const id = Number(req.params.id)
+  Person.findByIdAndUpdate(req.params.id, req.body).then( updatePerson => res.json(updatePerson))
+})
+
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Servidor levantado en el puerto ${PORT}`)

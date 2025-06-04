@@ -46,9 +46,9 @@ function App() {
     if (isRepeated) {
       if (window.confirm(`${newName} is al ready added to phonebook, replace the old number witch a new one?`)) {
         personsService
-          .update(isRepeatedId.id, newPerson)
+          .update(isRepeatedId._id, newPerson)
           .then(response => {
-            setPersons(persons.map(person => person.id === isRepeatedId.id ? response : person));
+            setPersons(persons.map(person => person._id === isRepeatedId._id ? response : person));
             showMessage(response.name, 'Change', true)
           })
           .catch(error => {
