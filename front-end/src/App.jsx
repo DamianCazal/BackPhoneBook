@@ -89,7 +89,7 @@ function App() {
     if (window.confirm(`delete ${obj.name}?`)) {
       personsService
         .deletePerson(obj._id)
-        .then(response => setPersons(persons.filter(person => person._id !== response_.id)))
+        .then(response => setPersons(persons.filter(person => person._id !== response._id)))
     }
   }
 
