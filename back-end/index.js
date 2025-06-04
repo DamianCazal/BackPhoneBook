@@ -12,30 +12,6 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static('dist'))
 
-//Datos
-const data = [
-    { 
-      "id": 1,
-      "name": "Arto Hellas", 
-      "number": "040-123456"
-    },
-    { 
-      "id": 2,
-      "name": "Ada Lovelace", 
-      "number": "39-44-5323523"
-    },
-    { 
-      "id": 3,
-      "name": "Dan Abramov", 
-      "number": "12-43-234345"
-    },
-    { 
-      "id": 4,
-      "name": "Mary Poppendieck", 
-      "number": "39-23-6423122"
-    }
-]
-
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path:  ', request.path)
@@ -83,28 +59,17 @@ app.delete('/api/persons/:id', (req, res) => {
   res.json(persons)
 })
 
-const generatedId = () => {
-  return Math.round(Math.random() * 100)
-}
-
 app.post('/api/persons', (req, res) => {
-  const id = Number(req.params.id)
+  // if(!req.body.name) return res.status(404).json({error: 'El nombre no existe'})
+  // if(data.some(person => person.name === req.body.name)) return res.status(404).json({error: 'El nombre debe ser unico'})
+  // if(!req.body.number) return res.status(404).json({error: 'El numero no existe'})
 
-  if(!req.body.name) return res.status(404).json({error: 'El nombre no existe'})
-
-  if(data.some(person => person.name === req.body.name)) return res.status(404).json({error: 'El nombre debe ser unico'})
-
-  if(!req.body.number) return res.status(404).json({error: 'El numero no existe'})
-
-  const dataPost = {
-    id: generatedId(),
+  const newPerson = new Person({
     name: req.body.name,
     number: req.body.number
-  }
+  })
 
-  data.push(dataPost)
-
-  res.json(data)
+  newPerson.save().then( savedPerson => res.json(savedPerson))
 })
 
 const PORT = process.env.PORT || 3001
