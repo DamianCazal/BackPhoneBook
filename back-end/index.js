@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 var morgan = require('morgan') 
 const cors = require('cors')
+require('dotenv').config()
+
+const Person = require('../back-end/models/person.js')
 
 morgan('tiny')
 
@@ -50,7 +53,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/persons', (req, res) => {
-  res.json(data)
+  Person.find({}).then( person => res.json(person))
 })
 
 app.get('/api/persons/:id', (req, res) => {
