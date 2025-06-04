@@ -33,13 +33,7 @@ app.get('/api/persons', (req, res) => {
 })
 
 app.get('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const person = data.find( person => person.id === id)
-
-  if (!person) {
-    return res.status(404).send(`Persona no encontrada con el id ${id}`)
-  }
-  res.json(person)
+  Person.findById(req.params.id).then( person => res.json(person))
 })
 
 app.get('/info', (req, res) => {
