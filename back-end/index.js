@@ -60,10 +60,7 @@ app.delete('/api/persons/:id', (req, res) => {
 })
 
 app.post('/api/persons', (req, res) => {
-  // if(!req.body.name) return res.status(404).json({error: 'El nombre no existe'})
-  // if(data.some(person => person.name === req.body.name)) return res.status(404).json({error: 'El nombre debe ser unico'})
-  // if(!req.body.number) return res.status(404).json({error: 'El numero no existe'})
-
+  
   const newPerson = new Person({
     name: req.body.name,
     number: req.body.number
