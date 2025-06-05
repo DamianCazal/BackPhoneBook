@@ -59,7 +59,9 @@ app.post('/api/persons', (req, res) => {
     number: req.body.number
   })
 
-  newPerson.save().then( savedPerson => res.json(savedPerson))
+  newPerson.save()
+    .then( savedPerson => res.json(savedPerson))
+    .catch(error => res.status(400).json({error: error}))
 })
 
 app.put('/api/persons/:id', (req, res) => {

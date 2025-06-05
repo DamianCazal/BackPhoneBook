@@ -62,6 +62,10 @@ function App() {
           setPersons(persons.concat(response));
           showMessage(response.name, 'Added', true)
         })
+        .catch(error => {
+          // está es la forma de acceder al mensaje de error
+          console.log(error.response.data.error.message)
+        })
     }
   }
 
